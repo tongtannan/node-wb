@@ -7,7 +7,7 @@ const seq = new Sequelize('koa2_weibo_db', 'root', 'ttn456456', {
   host: 'localhost',
   dialect: 'mysql',
   pool: {
-    max: 10, // 连接池最大数量
+    max: 5, // 连接池最大数量
     min: 0,
     idle: 10000 // 如果一个连接池10s以内没有被使用，则释放
   }
