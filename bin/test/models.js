@@ -1,3 +1,7 @@
+/*
+ * @Author: tongtannan 13352424428@163.com
+ * @Description: 
+ */
 const { DataTypes } = require('sequelize');
 const seq = require('../seq');
 
@@ -29,7 +33,9 @@ const Doc = seq.define('doc', {
     allowNull: false
   }
 });
-
+/**
+ * @description: 外键
+ */
 Doc.belongsTo(Person, {
   foreignKey: 'userId'
 });
