@@ -13,9 +13,6 @@ const seq = new Sequelize('koa2_weibo_db', 'root', 'ttn456456', {
   }
 });
 
-/**
- * @description: redis
- */
 let REDIS_CONF = {
   post: 6379,
   host: '127.0.0.1'
