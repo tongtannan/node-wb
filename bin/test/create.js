@@ -1,3 +1,7 @@
+/*
+ * @Author: tongtannan 13352424428@163.com
+ * @Description: create
+ */
 const { Person, Doc } = require('./models');
 
 async function createPerson() {
