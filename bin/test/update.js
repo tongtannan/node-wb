@@ -1,3 +1,7 @@
+/*
+ * @Author: tongtannan 13352424428@163.com
+ * @Description: update
+ */
 const { Person, Doc } = require('./models');
 
 async function update() {
@@ -12,7 +16,7 @@ async function update() {
     }
   );
 
-  process.exit()
+  process.exit();
 }
 
 update();

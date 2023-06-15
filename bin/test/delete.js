@@ -1,3 +1,7 @@
+/*
+ * @Author: tongtannan 13352424428@163.com
+ * @Description: delete
+ */
 const { Person, Doc } = require('./models');
 
 async function deleteDoc() {
@@ -7,7 +11,7 @@ async function deleteDoc() {
     }
   });
 
-  process.exit()
+  process.exit();
 }
 
 deleteDoc();
