@@ -1,6 +1,6 @@
 /*
  * @Author: tongtannan 13352424428@163.com
- * @Description: 
+ * @Description: model
  */
 const { DataTypes } = require('sequelize');
 const seq = require('../seq');
