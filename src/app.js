@@ -1,3 +1,7 @@
+/*
+ * @Author: tongtannan 13352424428@163.com
+ * @Description: 
+ */
 const Koa = require('koa');
 const app = new Koa();
 const views = require('koa-views');
@@ -7,7 +11,7 @@ const bodyparser = require('koa-bodyparser');
 const logger = require('koa-logger');
 
 const index = require('./routes/index');
-const users = require('./routes/users');
+const users = require('./routes/api/users');
 
 // error handler
 onerror(app);
