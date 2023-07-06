@@ -1,10 +1,14 @@
 /*
  * @Author: tongtannan 13352424428@163.com
- * @Description:user数据逻辑
+ * @Description:user业务逻辑，返回格式
  */
-const { getUserInfo } = require('../services/user');
+const { getUserInfo, createUser } = require('../services/user');
 const { SuccessModel, ErrorModel } = require('../models/ResModel');
-const { REGISTER_USERNAME_EXIST } = require('../models/ErrorInfo');
+const {
+  registerUserNameExistInfo,
+  registerFailInfo
+} = require('../models/ErrorInfo');
+const doCrypto = require('../utils/crypto');
 
 async function isExist(userName) {
   const userInfo = await getUserInfo(userName);
@@ -14,13 +18,33 @@ async function isExist(userName) {
       message: '用户名可以使用'
     });
   } else {
-    return new ErrorModel({
-      errno: REGISTER_USERNAME_EXIST,
-      message: '用户名已存在'
+    return new ErrorModel(registerUserNameExistInfo);
+  }
+}
+
+async function register({ userName, password, gender }) {
+  const userInfo = await getUserInfo(userName);
+  if (userInfo) {
+    return new ErrorModel(registerUserNameExistInfo);
+  }
+
+  try {
+    const res = await createUser({
+      userName,
+      password: doCrypto(password),
+      gender
     });
+
+    return new SuccessModel({
+      data: res,
+      message: '注册成功'
+    });
+  } catch (error) {
+    return new ErrorModel(registerFailInfo);
   }
 }
 
 module.exports = {
-  isExist
+  isExist,
+  register
 };

@@ -1,6 +1,6 @@
 /*
  * @Author: tongtannan 13352424428@163.com
- * @Description:user相关接口
+ * @Description:user数据库处理，格式化
  */
 const { User } = require('../db/model/index');
 const { formatUser } = require('./format');
@@ -20,6 +20,23 @@ async function getUserInfo(userName, password) {
   return formatUser(res.dataValues);
 }
 
+async function createUser({
+  userName,
+  password,
+  gender = 3,
+  nickName = userName
+}) {
+  const result = await User.create({
+    userName,
+    password,
+    nickName,
+    gender
+  });
+
+  return result.dataValues;
+}
+
 module.exports = {
-  getUserInfo
+  getUserInfo,
+  createUser
 };

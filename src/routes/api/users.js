@@ -1,21 +1,29 @@
 /*
  * @Author: tongtannan 13352424428@163.com
- * @Description: user api router
+ * @Description: user view、API接口、校验
  */
 const router = require('koa-router')();
-const { isExist } = require('../../controller/user');
+const { isExist, register } = require('../../controller/user');
+const userValidator = require('../../validator/user');
+const { genValidator } = require('../../middlewares/validarot');
+const test = require('../../middlewares/test');
 
 router.prefix('/api/user');
 
-router.post('/register', async (ctx, next) => {
-  const { userName, password } = ctx.request.body;
+router.post(
+  '/register',
+  test(),
+  genValidator(userValidator),
+  async (ctx, next) => {
+    const { userName, password, gender } = ctx.request.body;
 
-  ctx.body = {
-    tag: 100,
-    userName,
-    password
-  };
-});
+    ctx.body = await register({
+      userName,
+      password,
+      gender
+    });
+  }
+);
 
 router.post('/isExist', async (ctx, next) => {
   const { userName } = ctx.request.body;
